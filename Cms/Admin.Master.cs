@@ -11,7 +11,18 @@ namespace Cms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["email"] == null || Session["role_id"] == null ||
+                string.IsNullOrEmpty(Session["email"].ToString()) || string.IsNullOrEmpty(Session["role_id"].ToString()))
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+        }
 
+        protected void logoutBtn_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Redirect("~/Default.aspx");
         }
     }
 }

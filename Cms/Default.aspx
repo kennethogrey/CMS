@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Cms._Default" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Cms._Default" EnableEventValidation="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -19,20 +19,24 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">CONTRACT MANAGEMENT SYSTEM - GROUP 1</h1>
                                     </div>
-                                    <form class="user">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                    <div runat="server" class="user">
+                                        <div runat="server" id="errorDiv">
+                                            <p class="text-danger"> Invalid Email or Password. Please try again</p>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                            <asp:TextBox runat="server" ID="email" CssClass="form-control form-control-user" 
+                                                placeholder="Enter Email Address..." TextMode="Email"/>
+                                            <asp:RequiredFieldValidator runat="server" ID="rfvEmail" CssClass="text-danger" ControlToValidate="email" ErrorMessage="Enter Your Email" Display="Dynamic" />
+                                            <asp:RegularExpressionValidator runat="server" ID="revEmail" CssClass="text-danger" ControlToValidate="email" ErrorMessage="Invalid Email Address" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic" />
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">Login
-                                        </a>
+                                        <div class="form-group">
+                                            <asp:TextBox runat="server" ID="password" CssClass="form-control form-control-user" placeholder="Enter Your Password..." TextMode="Password"/>
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="password" CssClass="text-danger" ID="rfvpassword" ErrorMessage="Enter Your Password"  Display="Dynamic"/>
+                                        </div>
+
+                                        <asp:Button runat="server" ID="loginButton" OnClick="loginButton_Click" CssClass="btn btn-primary btn-user btn-block" Text="Login" />
                                         
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
