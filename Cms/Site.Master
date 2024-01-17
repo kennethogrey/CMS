@@ -25,10 +25,10 @@
 
 </head>
 <body class="bg-gradient-primary">
+    <form runat="server">
+         <asp:ContentPlaceHolder ID="MainContent" runat="server">
 
-    <asp:ContentPlaceHolder ID="MainContent" runat="server">
-    
-    </asp:ContentPlaceHolder>
-
+         </asp:ContentPlaceHolder>
+    </form>
 </body>
 </html>
